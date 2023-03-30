@@ -1,0 +1,77 @@
+#include <stdio.h>
+#define N 5
+	struct student 
+{
+	char name[11];
+	float eng_score;
+	float math_score;
+	float chinese_scoare;
+	float total;
+}stu[10];
+void  Get_Date(struct student stu[]);
+void  Prt_Date(struct student stu[]);
+void  Total_Date(struct student stu[]);
+void  Sort_Date(struct student stu[]);
+int main()
+{
+	
+	int i;
+ 	struct student stu[10];	
+	Get_Date(stu);
+	Prt_Date(stu);
+	Total_Date(stu);
+	Sort_Date(stu);
+	printf("---------------\n");
+	Prt_Date(stu);
+	return 0;
+}
+void  Get_Date(struct student stu[N])
+{
+	int i;
+	for(i=0;i<N;i++)
+	{
+		printf("请输入学生基本信息及各课程成绩\n");
+		printf("姓名 英语 数学 语文\n");
+		scanf("%s",stu[i].name) ;
+		scanf("%f%f%f",&stu[i].eng_score,&stu[i].math_score,&stu[i].chinese_scoare);
+   }
+}
+void  Prt_Date(struct student stu[N])
+{
+	int i;
+	for(i=0;i<N;i++)
+	{
+	printf("%s\t%f\t%f\t%f\t%f\t",stu[i].name,stu[i].eng_score,stu[i].math_score,stu[i].chinese_scoare,stu[i].total);
+	printf("\n");
+	}
+}
+void  Total_Date(struct student stu[N])
+{
+	int i;
+	for(i=0;i<N;i++)
+	{	
+	stu[i].total=stu[i].eng_score+stu[i].math_score+stu[i].chinese_scoare;
+	}
+}
+void  Sort_Date(struct student stu[N])
+{
+	int i,j,iMax;
+	struct student temp;
+	for(i=0;i<N;i++)
+	{
+		iMax=i;
+		for(j=i+1;j<N;j++)
+		{
+			if(stu[j].total>stu[iMax].total)
+			{
+				iMax=j;
+			}
+			if(iMax!=i)
+			{
+				temp=stu[i];
+				stu[i]=stu[iMax];
+				stu[iMax]=temp;
+			}
+		}
+	}
+}
